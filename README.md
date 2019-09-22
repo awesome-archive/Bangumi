@@ -15,4 +15,4 @@
 ![TornadoVideo By Xyuan0](https://s2.ax1x.com/2019/09/03/nAsexA.png)
 
 ## 备注：
-在发一个开源代码，打算把本地删除了，这是学习Tornado、websocket、dplayer等技术时敲的一个小项目
+这是学习Tornado、websocket、dplayer等技术时敲的一个小项目

@@ -1,0 +1,8 @@
+tornado==5.1.1
+mysql-connector-python==8.0.12
+sqlalchemy==1.2.12
+sockjs-tornado==1.0.5
+redis==2.10.6
+wtforms==2.2.1
+werkzeug==0.17.1
+pillow==6.1.0

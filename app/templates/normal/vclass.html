@@ -1,0 +1,122 @@
+{% extends "../layout.html" %}
+{% block pagedes %}
+{% if data["vclass"] == "电影" %}
+<meta name="keywords" content="电影天堂,最新电影,看的电影,热门电影,电影">
+<meta name="description" content="提供最新最快的影视在线播放!">
+{% elif data["vclass"] == "动漫" %}
+<meta name="keywords" content="有什么好看的动漫,经典动漫,动漫排行榜">
+<meta name="description" content="经典动漫推荐,有什么好看的动漫推荐，就上动漫排行榜，完全免费在线观看!">
+{% elif data["vclass"] == "电视剧" %}
+<meta name="keywords" content="电视剧,电视剧大全,最新电视剧,好看的电视剧,电视剧排行榜">
+<meta name="description" content="电影电视剧大全,收集最新好看的电视大全,提供好看的电视剧排行榜及最新电视剧资讯!">
+{% end %}
+{% end %}
+{% block content %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        {% if data["vclass"] == "电影" %}
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=剧情">剧情</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=喜剧">喜剧</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=爱情">爱情</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=动作">动作</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=惊悚">惊悚</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=悬疑">悬疑</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=恐怖">恐怖</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=犯罪">犯罪</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=科幻">科幻</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=冒险">冒险</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=奇幻">奇幻</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=动画">动画</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=战争">战争</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=历史">历史</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=音乐">音乐</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=古装">古装</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=家庭">家庭</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=武侠">武侠</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=纪录">纪录</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=灾难">灾难</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=运动">运动</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=传记">传记</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=歌舞">歌舞</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=儿童">儿童</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=西部">西部</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=预告">预告</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=未知">未知</a></li>
+        {% elif data["vclass"] == "动漫" %}
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=悬疑">悬疑</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=剧情">剧情</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=历史">历史</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=喜剧">喜剧</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=动画">动画</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=未知">未知</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=惊悚">惊悚</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=古装">古装</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=恐怖">恐怖</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=犯罪">犯罪</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=校园">校园</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=科幻">科幻</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=冒险">冒险</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=童话">童话</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=经典">经典</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=青春">都市</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=励志">励志</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=魔法">魔法</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=格斗">格斗</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=宠物">宠物</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=机战">机战</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=益智">益智</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=游戏">游戏</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=竞技">竞技</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=推理">推理</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=神魔">神魔</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=恋爱">恋爱</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=魔法">魔法</a></li>
+        {% elif data["vclass"] == "电视剧" %}
+
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=剧情">剧情</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=喜剧">喜剧</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=爱情">爱情</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=动作">动作</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=惊悚">惊悚</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=悬疑">悬疑</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=恐怖">恐怖</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=犯罪">犯罪</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=科幻">科幻</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=冒险">冒险</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=奇幻">奇幻</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=战争">战争</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=历史">历史</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=古装">古装</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=家庭">家庭</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=武侠">武侠</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=灾难">灾难</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=歌舞">歌舞</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=西部">西部</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=预告">预告</a></li>
+        <li class="breadcrumb-item"><a href="/vclass/?t={{ data['type'] }}&n=未知">未知</a></li>
+        {% end %}
+    </ol>
+</nav>
+<div class="card top-content">
+    <div class="card-header">
+        {% if data["tag"] %}
+        分类 / {{ data['vclass'] }} / 标签 / {{ data['tag'] }} / 下的视频列表
+        {% else %}
+        分类 / {{ data['vclass'] }} / 下的视频列表
+        {% end %}
+    </div>
+    <div class="card-body index-box">
+        {% set v = data["video"] %}
+        {% for video in v["data"] %}
+        <div class="col-md-2" style="float: left;">
+            <a class="figure" href="/detail/?id={{ video.id }}" target="_blank">
+                <img src="{{ video.logo }}" class="img-fluid">
+                <span class="d-block">{{ video.status }}</span>
+                <figcaption class="out-hidden figure-caption bg-light">{{ video.name }}</figcaption>
+            </a>
+        </div>
+        {% end %}
+    </div>
+</div>
+{% module vclass_page(v, data['type']) %}
+{% end %}

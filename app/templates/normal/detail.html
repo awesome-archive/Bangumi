@@ -1,0 +1,91 @@
+{% extends "../layout.html" %}
+{% block pagedes %}
+{% set video = data["video"] %}
+<meta name="keywords" content="{{  video.name }}在线观看,{{  video.name }}迅雷下载">
+<meta name="description" content="{{  video.name }}免费全集在线观看高清,XYuan弹幕视频网 - (￣﹃￣)~zZZ">
+{% end %}
+{% block head %}
+{% end %}
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        {{ video.name }}
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered table-sm">
+            <tbody>
+            <tr>
+                <td rowspan="7" class="text-center d-none d-md-table-cell" width="210px">
+                    <img src="{{ video.logo }}" class="img-thumbnail rounded">
+                </td>
+                <td colspan="2">
+                    <cq>演　　员：</cq>
+                    <span row="actor">{{ video.actors }}</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <cq>剧情类别：</cq>
+                    <span row="type">
+                        / {% for tag in data["tags"] %}
+                        <a href="/tags/?n={{ tag }}">{{ tag }}</a> /
+                        {% end %}
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <cq>导　　演：</cq>
+                    <span row="director">{{ video.director }}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <cq>地　　区：</cq>
+                    <span row="area">{{ video.area }}</span>
+                </td>
+                <td>
+                    <cq>热　　度：</cq>
+                    {{ data['hot'] }}°
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <cq>年　　份：</cq>
+                    {{ video.year }}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <cq>更新状态：</cq>
+                    <span class="up">{{ video.status }}</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <cq>上次更新：</cq>
+                    {{ video.updatedAt }}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="card top-content">
+    <div class="card-body" style="padding-bottom: 0">
+        {% for sub in data["sub_video"] %}
+        <div class="col-md-1" style="float: left">
+            <a href="/play/?id={{ video.id }}&vsb={{ sub['episode'] }}" class="btn sub-btn btn-secondary">{{
+                sub['episode'] }}</a>
+        </div>
+        {% end %}
+    </div>
+</div>
+<div class="card top-content">
+    <div class="card-body">
+        {{ video.desc }}
+    </div>
+</div>
+{% end %}
+{% block foot %}
+{% end %}

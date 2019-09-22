@@ -1,0 +1,23 @@
+{% extends "../layout.html" %}
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        标签 / {{ data["tag"] }} / 下的视频
+    </div>
+    <div class="card-body index-box">
+        {% set v = data["video"] %}
+        {% for video in v["data"] %}
+        <div class="col-md-2" style="float: left;">
+            <a class="figure" href="/detail/?id={{ video.id }}" target="_blank">
+                <img src="{{ video.logo }}" class="img-fluid">
+                <span class="d-block">{{ video.status }}</span>
+                <figcaption class="out-hidden figure-caption bg-light">{{ video.name }}</figcaption>
+            </a>
+        </div>
+        {% end %}
+    </div>
+</div>
+{% module tags_page(v, data["tag"]) %}
+{% end %}
+{% block foot %}
+{% end %}

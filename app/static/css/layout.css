@@ -1,0 +1,194 @@
+﻿* {
+    font-size: 14px;
+}
+
+.site-name {
+    color: white;
+    font-weight: bold;
+}
+
+.top-content {
+    margin-top: 20px;
+}
+
+.figure {
+    width: 150px;
+    opacity: .9;
+    position: relative;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.figure img {
+    width: 100%;
+    height: 210px;
+}
+
+.d-block {
+    position: absolute;
+    width: 100%;
+    line-height: 32px;
+    bottom: 32px;
+    color: white;
+    background-color: rgba(0, 0, 0, .6);
+    text-align: center;
+    font-size: 12px;
+}
+
+.out-hidden {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+.figure-caption {
+    line-height: 32px;
+    text-align: center;
+    background-color: #ecf0f1 !important;
+}
+
+.table-sm td {
+    vertical-align: middle;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 6px !important;
+}
+
+.foot-section {
+    background-color: transparent;
+    margin-bottom: 0px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.sub-btn {
+    width: 100%;
+    margin-bottom: 20px;
+    min-width: 46px;
+    padding: 3px 0px;
+}
+
+.play-box {
+    display: flex;
+}
+
+.danmu-list {
+    width: 18%;
+    height: 500px;
+}
+
+.dplayer {
+    width: 57%;
+    height: 500px;
+}
+
+.chat-room {
+    width: 25%;
+    height: 500px;
+}
+
+.danmu-container ul li {
+    float: left;
+    list-style-type: none;
+}
+
+.danmu-container {
+    width: 100%;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar, .chat-list::-webkit-scrollbar, .danmu-container::-webkit-scrollbar {
+    width: 1px;
+    height: 0px;
+}
+
+::-webkit-scrollbar-thumb, .chat-list::-webkit-scrollbar-thumb, .danmu-container::-webkit-scrollbar-thumb {
+}
+
+::-webkit-scrollbar-track, .chat-list::-webkit-scrollbar-track, .danmu-container::-webkit-scrollbar-track {
+}
+
+.chat-list {
+    overflow-y: scroll;
+    width: 100%;
+    height: 80%;
+}
+
+.pagination {
+    margin-top: 20px;
+}
+
+.pagination-sm .page-link {
+    font-size: 15px;
+}
+
+.danmu-time {
+    width: 35%;
+    text-align: left;
+}
+
+.danmu-content {
+    width: 35%;
+    text-align: left;
+}
+
+.danmu-user {
+    width: 30%;
+    text-align: right;
+    padding-right: 5px;
+}
+
+@media screen and (max-width: 1200px) {
+    .play-box {
+        display: block;
+    }
+
+    .danmu-list {
+        display: none;
+    }
+
+    .chat-room {
+        margin-top: 20px;
+        width: 100%;
+    }
+
+    .dplayer {
+        width: 100%;
+    }
+
+    .index-box {
+        padding: 12px 0 12px 12px;
+    }
+
+    .index-box .col-md-2 {
+        padding-left: 0px;
+        padding-right: 12px;
+    }
+
+    .index-box .col-md-2 .figure {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 770px) {
+    .index-box .col-md-2 {
+        width: 50%;
+    }
+
+    .figure img {
+        height: 224px;
+    }
+
+    .search-box {
+        width: 88%;
+    }
+}

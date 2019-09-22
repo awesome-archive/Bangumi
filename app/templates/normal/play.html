@@ -1,0 +1,191 @@
+{% extends "../layout.html" %}
+{% block pagedes %}
+<meta name="keywords"
+      content="{{ data['video'].name }}在线观看,{{ data['video'].name }}第{{ data['cur_video']['episode'] }}集,{{ data['video'].name }}迅雷下载">
+<meta name="description" content="{{ data['video'].name }}免费全集在线观看高清,XYuan弹幕视频网 - (￣﹃￣)~zZZ">
+{% end %}
+{% block head %}
+<link rel="stylesheet" href="{{ static_url('dplayer/DPlayer.min.css') }}">
+<link rel="stylesheet" href="{{ static_url('ue/third-party/SyntaxHighlighter/shCoreDefault.css') }}">
+<script src="{{ static_url('ue/third-party/SyntaxHighlighter/shCore.js') }}"></script>
+<script src="{{ static_url('dplayer/DPlayer.min.js') }}"></script>
+<script type="text/javascript" charset="utf-8" src="{{ static_url('ue/ueditor.config.js') }}"></script>
+<script type="text/javascript" charset="utf-8" src="{{ static_url('ue/ueditor.all.js') }}"></script>
+<script type="text/javascript" charset="utf-8" src="{{ static_url('ue/lang/zh-cn/zh-cn.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+{% end %}
+{% block content %}
+<div class="top-content">
+    <div class="card">
+        <div class="card-body">
+            温馨提醒:请大家不要相信视频里面出现的广告
+        </div>
+    </div>
+</div>
+<div class="play-box top-content">
+    <div class="card danmu-list">
+        <div class="card-header danmu-count">
+            弹幕列表
+        </div>
+        <div class="card-body danmu-container" style="padding: 5px;padding-right: 0px;">
+            <ul style="padding: 0; margin: 0;height: 26px;">
+                <li class="danmu-time">时间</li>
+                <li class="danmu-content">内容</li>
+                <li class="danmu-user">用户</li>
+            </ul>
+            <div class="danmu-redis">
+            </div>
+        </div>
+    </div>
+    <div class="dplayer" id="dplayer"></div>
+    <div class="card chat-room">
+        <div class="card-header">
+            在线聊天（{{ data["online"] }}人）
+        </div>
+        <div class="card-body chat-list" style="padding: 5px;border-bottom: 1px solid rgba(0,0,0,.125);">
+        </div>
+        <div class="card-body" style="padding: 5px">
+            <form style="float: bottom" id="form-data">
+                <div class="media">
+                    <input type="hidden" name="vid" id="vid" value="{{ data['video'].id }}">
+                    <input type="hidden" name="vsb" id="vsb" value="{{ data['cur_video']['episode'] }}">
+                    {% if handler.user %}
+                    <img class="mr-3"
+                         src="{% if handler.user.face %}/static/uploads/{{ handler.user.face }}{% else %}{{ static_url('images/male.png') }}{% end %}"
+                         style="width: 60px;height: 60px;border-radius: 50%">
+                    {% else %}
+                    <img class="mr-3" src="{{ static_url('images/male.png') }}"
+                         style="width: 60px;height: 60px;border-radius: 50%">
+                    {% end %}
+                    <div class="media-body">
+                        <h6>{% if handler.name %}{{ handler.name }}{% else %}游客 <a href="/login/">[登录]</a> <a
+                                href="/regist/">[注册]</a>{% end %} <a style="margin-top: 12px;" id="send_msg"
+                                                                     href="javascript:void(0)">[发送]</a></h6>
+                        <textarea width="100%" placeholder="请不要过快发送否则可能会被封杀" name="content" id="editor"
+                                  style="width: 100%;"></textarea>
+                        <input type="hidden" name="name" id="input_name"
+                               value="{% if handler.name %}{{ handler.name }}{% else %}游客{% end %}">
+                        {% if handler.user %}
+                        <input type="hidden" name="face" id="input_face"
+                               value="{% if handler.user.face %}/static/uploads/{{ handler.user.face }}{% else %}{{ static_url('images/male.png') }}{% end %}">
+                        {% else %}
+                        <input type="hidden" name="face" id="input_face"
+                               value="{{ static_url('images/male.png') }}">
+                        {% end %}
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="card top-content">
+    <div class="card-header">
+        正在播放 / {{ data["video"].name }} / {{ data['cur_video']['episode'] }} / <a href="/gbook/">点击报错</a>
+    </div>
+    <div class="card-body">
+        {{ data["video"].desc }}
+    </div>
+</div>
+<div class="card top-content">
+    <div class="card-body" style="padding-bottom: 0">
+        {% for sub in data["sub_video"] %}
+        <div class="col-md-1" style="float: left">
+            {% if sub['episode'] == data['cur_video']['episode'] %}
+            <a style="background-color: #2C3E50;border-color: #2C3E50;"
+               href="/play/?id={{ data['video'].id }}&vsb={{ sub['episode'] }}"
+               class="selected btn sub-btn btn-secondary">{{
+                sub['episode'] }}</a>
+            {% else %}
+            <a href="/play/?id={{ data['video'].id }}&vsb={{ sub['episode'] }}" class="btn sub-btn btn-secondary">{{
+                sub['episode'] }}</a>
+            {% end %}
+        </div>
+        {% end %}
+    </div>
+</div>
+{% end %}
+{% block foot %}
+<script src="https://cdn.bootcss.com/hls.js/8.0.0-beta.3/hls.min.js"></script>
+<script src="https://cdn.bootcss.com/hls.js/8.0.0-beta.3/hls.min.js"></script>
+<script>
+    var ue = UE.getEditor('editor', {
+        toolbars: [
+            ['fullscreen', 'source', '|', 'undo', 'redo', '|', 'emotion', 'preview']
+        ]
+    });
+
+    function dplayer(vurl) {
+        window.dp = new DPlayer({
+            container: document.getElementById('dplayer'),
+            screenshot: false,
+            autoplay: false,
+            theme: '#FADFA3',
+            loop: false,
+            lang: 'zh-cn',
+            hotkey: true,
+            preload: 'auto',
+            volume: 0.7,
+            mutex: true,
+            video: {
+                url: vurl,
+                type: 'customHls',
+                customType: {
+                    'customHls': function (video, player) {
+                        const hls = new Hls();
+                        hls.loadSource(video.src);
+                        hls.attachMedia(video);
+                    }
+                }
+            },
+            danmaku: {
+                id: "{{ data['video'].id }}s{{ data['cur_video']['episode'] }}",
+                api: '/dm/',
+                user: "{% if handler.name %}{{ handler.name }}{% else %}游客{% end %}",
+            }
+        });
+    }
+
+    dplayer("{{ data['cur_video']['link'] }}");
+
+    function s_to_hs(s) {
+        var t;
+        if (s > -1) {
+            var hour = Math.floor(s / 3600);
+            var min = Math.floor(s / 60) % 60;
+            var sec = s % 60;
+            if (hour < 10) {
+                t = '0' + hour + ":";
+            } else {
+                t = hour + ":";
+            }
+
+            if (min < 10) {
+                t += "0";
+            }
+            t += min + ":";
+            if (sec < 10) {
+                t += "0";
+            }
+            t += sec;
+        }
+        return t;
+    }
+
+    $.ajax({
+        url: "/dm/v3/?id={{ data['video'].id }}s{{ data['cur_video']['episode'] }}",
+        success: function (res) {
+            var uls = "";
+            $(".danmu-count").text("弹幕列表（" + res.data.length + "条）");
+            for (var i = 0; i < res.data.length; i++) {
+                uls += "<ul style=\"padding: 0; margin: 0;\">" +
+                    "<li class=\"danmu-time\">" + s_to_hs(Math.ceil(res.data[i][0])) + "</li>" +
+                    "<li class=\"out-hidden danmu-content\" title=\"" + res.data[i][4] + "\" > " + res.data[i][4] + "</li>" +
+                    "<li class=\"out-hidden danmu-user\" title=\"" + res.data[i][3] + "\" >" + res.data[i][3] + "</li>" +
+                    "</ul>";
+            }
+            $(".danmu-redis").append(uls);
+        }
+    });
+</script>
+<script src="{{ static_url('js/chat.js') }}"></script>
+{% end %}

@@ -1,0 +1,27 @@
+{% extends "../layout.html" %}
+{% block pagedes %}
+{% end %}
+{% block head %}
+{% end %}
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        视频列表 -
+        <a href="/manage/insert/">添加视频</a>
+    </div>
+    <ul class="list-group list-group-flush">
+        {% for video in data["video"]["data"] %}
+        <li class="list-group-item">
+            #{{ video.id }} <a href="/detail/?id={{ video.id }}">{{ video.name }}</a>
+            <div style="float: right">
+                <a class="badge badge-primary" href="/manage/edit/?id={{ video.id }}">编辑</a>
+                <a class="badge badge-danger" href="/manage/delete/?id={{ video.id }}">删除</a>
+            </div>
+        </li>
+        {% end %}
+    </ul>
+</div>
+{% module manage_page(data["video"]) %}
+{% end %}
+{% block foot %}
+{% end %}

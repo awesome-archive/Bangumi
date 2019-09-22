@@ -1,0 +1,105 @@
+{% extends "../layout.html" %}
+{% block pagedes %}
+<meta name="keywords" content="Xyuan弹幕视频网">
+<meta name="description" content="提供最新最快的影视在线播放!">
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<style>
+    .carousel-inner img {
+        width: 100%;
+        height: 100%;
+    }
+</style>
+{% end %}
+{% block content %}
+<div id="demo" class="carousel slide top-content" data-ride="carousel">
+    <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
+    </ul>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{{ static_url('images/bg1.jpg') }}">
+            <div class="carousel-caption">
+                <a style="color: #fff" href="/detail/?id=9197"><h3>CAROLE & TUESDAY</h3></a>
+                <p class="out-hidden">
+                    距离人类移居到新的基地火星已经过了50年。这个时代中大多数的文化均由AI创造，人类只需要享受即可。有一位女孩，在首都阿尔巴市努力生活，在工作之余的空闲时间努力成为一名音乐家，她总觉得缺少些什么。她的名字是…</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="{{ static_url('images/bg2.png') }}">
+            <div class="carousel-caption">
+                <a style="color: #fff" href="/detail/?id=1136"><h3>杀戮天使</h3></a>
+                <p class="out-hidden">在一栋大楼最底层甦醒的13岁少女，瑞吉儿·加德纳(レイチェル・ガードナー)，她没有任何记忆，不知道自己为何在这里，而为了回到地面，她开始试着逃出去，但是突…</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="{{ static_url('images/bg3.jpg') }}">
+            <div class="carousel-caption">
+                <a style="color: #fff" href="/detail/?id=734"><h3>新石纪</h3></a>
+                <p class="out-hidden">全人类因谜般的现象而在一瞬间石化，之后过了数千年——。 拥有超越人类的头脑，天生的科学少年·千空苏醒了。 “从石器时代到现代文明，要跨越这科学史上的20…</p>
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </a>
+</div>
+<div class="card top-content">
+    <div class="card-header">
+        电影
+        <span class="badge">Movie</span>
+    </div>
+    <div class="card-body index-box">
+        {% for video in data["dy_hot_video"] %}
+        <div class="col-md-2" style="float: left;">
+            <a class="figure" href="/detail/?id={{ video.id }}" target="_blank">
+                <img src="{{ video.logo }}" class="img-fluid">
+                <span class="d-block">{{ video.status }}</span>
+                <figcaption class="out-hidden figure-caption bg-light">{{ video.name }}</figcaption>
+            </a>
+        </div>
+        {% end %}
+    </div>
+</div>
+<div class="card top-content">
+    <div class="card-header">
+        动漫
+        <span class="badge">Cartoon</span>
+    </div>
+    <div class="card-body index-box">
+        {% for video in data["dm_hot_video"] %}
+        <div class="col-md-2" style="float: left;">
+            <a class="figure" href="/detail/?id={{ video.id }}" target="_blank">
+                <img src="{{ video.logo }}" class="img-fluid">
+                <span class="d-block">{{ video.status }}</span>
+                <figcaption class="out-hidden figure-caption bg-light">{{ video.name }}</figcaption>
+            </a>
+        </div>
+        {% end %}
+    </div>
+</div>
+<div class="card top-content">
+    <div class="card-header">
+        电视剧
+        <span class="badge">TV</span>
+    </div>
+    <div class="card-body index-box">
+        {% for video in data["dsj_hot_video"] %}
+        <div class="col-md-2" style="float: left;">
+            <a class="figure" href="/detail/?id={{ video.id }}" target="_blank">
+                <img src="{{ video.logo }}" class="img-fluid">
+                <span class="d-block">{{ video.status }}</span>
+                <figcaption class="out-hidden figure-caption bg-light">{{ video.name }}</figcaption>
+            </a>
+        </div>
+        {% end %}
+    </div>
+</div>
+{% end %}

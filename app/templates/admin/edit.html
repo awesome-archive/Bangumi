@@ -1,0 +1,99 @@
+{% extends "../layout.html" %}
+{% block pagedes %}
+{% end %}
+{% block head %}
+{% end %}
+{% block content %}
+<div class="card">
+    <div class="card-header">编辑视频</div>
+    <div class="card-body">
+        {% set video = data['video'] %}
+        <form id="form-data">
+            {% raw xsrf_form_html() %}
+            <div class="form-group">
+                <label>名称</label>
+                <input type="hidden" name="id" class="form-control form-width"
+                       value="{{ video.id }}">
+                <input type="text" name="name" class="form-control form-width"
+                       value="{{ video.name }}">
+                <p class="text-danger" id="error_name"></p>
+            </div>
+            <div class="form-group">
+                <label>封面</label>
+                <input type="text" name="logo" class="form-control form-width"
+                       value="{{ video.logo }}">
+                <p class="text-danger" id="error_logo"></p>
+            </div>
+            <div class="form-group">
+                <label>链接</label>
+                <textarea type="text" name="links" class="form-control form-width">{{ video.links }}</textarea>
+                <p class="text-danger" id="error_links"></p>
+            </div>
+            <div class="form-group">
+                <label>演员</label>
+                <input type="text" name="actors" class="form-control form-width"
+                       value="{{ video.actors }}">
+                <p class="text-danger" id="error_actors"></p>
+            </div>
+            <div class="form-group">
+                <label>标签</label>
+                <input type="text" name="tags" class="form-control form-width"
+                       value="{{ video.tags }}">
+                <p class="text-danger" id="error_tags"></p>
+            </div>
+            <div class="form-group">
+                <label>导演</label>
+                <input type="text" name="director" class="form-control form-width"
+                       value="{{ video.director }}">
+                <p class="text-danger" id="error_director"></p>
+            </div>
+            <div class="form-group">
+                <label>地区</label>
+                <input type="text" name="area" class="form-control form-width"
+                       value="{{ video.area }}">
+                <p class="text-danger" id="error_area"></p>
+            </div>
+            <div class="form-group">
+                <label>语言</label>
+                <input type="text" name="language" class="form-control form-width"
+                       value="{{ video.language }}">
+                <p class="text-danger" id="error_language"></p>
+            </div>
+            <div class="form-group">
+                <label>年份</label>
+                <input type="text" name="year" class="form-control form-width"
+                       value="{{ video.year }}">
+                <p class="text-danger" id="error_year"></p>
+            </div>
+            <div class="form-group">
+                <label>状态</label>
+                <input type="text" name="status" class="form-control form-width"
+                       value="{{ video.status }}">
+                <p class="text-danger" id="error_status"></p>
+            </div>
+            <div class="form-group">
+                <label>描述</label>
+                <textarea type="text" name="desc" class="form-control form-width">{{ video.desc }}</textarea>
+                <p class="text-danger" id="error_desc"></p>
+            </div>
+            <div class="form-group">
+                <label>分类</label>
+                <input type="text" name="vclass" class="form-control form-width" value="{{ video.vclass }}"/>
+                <p class="text-danger" id="error_vclass"></p>
+            </div>
+            <div class="form-group">
+                <a href="javascript:void(0)" id="btn-sub" class="btn btn-primary">确定</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% end %}
+{% block foot %}
+<script src="{{ static_url('js/request.js') }}"></script>
+<script>
+    $(document).ready(function () {
+        request("/manage/edit/", '/manage/', ['id', 'name', 'logo', 'links', 'actors', 'tags', 'director',
+            'area', 'language', 'year', 'status', 'desc', 'vclass'], "修改成功！");
+    });
+</script>
+{% end %}

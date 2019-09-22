@@ -1,0 +1,88 @@
+{% extends "../layout.html" %}
+{% block pagedes %}
+{% end %}
+{% block head %}
+{% end %}
+{% block content %}
+<div class="card">
+    <div class="card-header">添加视频</div>
+    <div class="card-body">
+        <form id="form-data">
+            {% raw xsrf_form_html() %}
+            <div class="form-group">
+                <label>名称</label>
+                <input type="text" name="name" class="form-control form-width">
+                <p class="text-danger" id="error_name"></p>
+            </div>
+            <div class="form-group">
+                <label>封面</label>
+                <input type="text" name="logo" class="form-control form-width">
+                <p class="text-danger" id="error_logo"></p>
+            </div>
+            <div class="form-group">
+                <label>链接</label>
+                <textarea type="text" name="links" class="form-control form-width">
+                </textarea>
+                <p class="text-danger" id="error_links"></p>
+            </div>
+            <div class="form-group">
+                <label>演员</label>
+                <input type="text" name="actors" class="form-control form-width">
+                <p class="text-danger" id="error_actors"></p>
+            </div>
+            <div class="form-group">
+                <label>标签</label>
+                <input type="text" name="tags" class="form-control form-width">
+                <p class="text-danger" id="error_tags"></p>
+            </div>
+            <div class="form-group">
+                <label>导演</label>
+                <input type="text" name="director" class="form-control form-width">
+                <p class="text-danger" id="error_director"></p>
+            </div>
+            <div class="form-group">
+                <label>地区</label>
+                <input type="text" name="area" class="form-control form-width">
+                <p class="text-danger" id="error_area"></p>
+            </div>
+            <div class="form-group">
+                <label>语言</label>
+                <input type="text" name="language" class="form-control form-width">
+                <p class="text-danger" id="error_language"></p>
+            </div>
+            <div class="form-group">
+                <label>年份</label>
+                <input type="text" name="year" class="form-control form-width">
+                <p class="text-danger" id="error_year"></p>
+            </div>
+            <div class="form-group">
+                <label>状态</label>
+                <input type="text" name="status" class="form-control form-width">
+                <p class="text-danger" id="error_status"></p>
+            </div>
+            <div class="form-group">
+                <label>描述</label>
+                <textarea name="desc" class="form-control form-width"></textarea>
+                <p class="text-danger" id="error_desc"></p>
+            </div>
+            <div class="form-group">
+                <label>分类</label>
+                <input name="vclass" class="form-control form-width"/>
+                <p class="text-danger" id="error_vclass"></p>
+            </div>
+            <div class="form-group">
+                <a href="javascript:void(0)" id="btn-sub" class="btn btn-primary">确定添加</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% end %}
+{% block foot %}
+<script src="{{ static_url('js/request.js') }}"></script>
+<script>
+    $(document).ready(function () {
+        request("/manage/insert/", '/manage/', ['name', 'logo', 'links', 'actors', 'tags', 'director',
+            'area', 'language', 'year', 'status', 'desc', 'vclass'], "添加成功！");
+    });
+</script>
+{% end %}

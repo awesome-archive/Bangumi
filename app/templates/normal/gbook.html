@@ -1,0 +1,50 @@
+{% extends "../layout.html" %}
+{% block pagedes %}
+<meta name="keywords" content="求片留言">
+<meta name="description" content="为广大用户免费提供无广告在线观看电影和电视剧服务!">
+{% end %}
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        留言板（请不要过快留言否则可能会被封杀）
+    </div>
+    <ul class="list-group list-group-flush">
+        {% for gbook in data['gbook']['data'] %}
+        <li class="list-group-item">{{ gbook.user }} 留言说：{{ gbook.content }}</li>
+        {% end %}
+    </ul>
+</div>
+{% module manage_page(data['gbook']) %}
+<div class="card top-content">
+    <div class="card-body">
+        <form id="form-data">
+            <div class="media">
+                <div class="media-body">
+                    {% raw xsrf_form_html() %}
+                    <h6>{% if handler.name %}{{ handler.name }}{% else %}游客 <a href="/login/">[登录]</a> <a
+                            href="/regist/">[注册]</a>{% end %}</h6>
+                    <textarea maxlength="500" name="content" style="width: 100%;"></textarea>
+                    <p class="text-danger" id="error_content"></p>
+                    <input type="hidden" name="name" id="input_name"
+                           value="{% if handler.name %}{{ handler.name }}{% else %}游客{% end %}">
+                </div>
+            </div>
+            <div>
+                <img src="/checkcode/" style="cursor: pointer"
+                     onclick="this.setAttribute('src','/checkcode/?nocache='+Math.random());">
+                <input type="text" name="chkcode" placeholder="验证码">
+                <span class="text-danger" id="error_chkcode"></span>
+                <a id="btn-sub" class="btn btn-success float-right" href="javascript:void(0)">发送留言</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% end %}
+{% block foot %}
+<script src="{{ static_url('js/request.js') }}"></script>
+<script>
+    $(document).ready(function () {
+        request("/gbook/", '/gbook/', ['name', 'content', 'chkcode'], "发送成功！");
+    });
+</script>
+{% end %}

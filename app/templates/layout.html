@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{{ data['site_title'] }}</title>
+    {% block pagedes %}
+    {% end %}
+    <link rel="shortcut icon " type="images/x-icon" href="{{ static_url('images/favicon.jpg')}}">
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ static_url('css/layout.css') }}">
+    {% block head %}{% end %}
+</head>
+<body>
+<div class="container">
+    <header class="navbar navbar-dark bg-primary justify-content-between">
+        <a class="navbar-brand site-name" href="/">XYuan弹幕视频网</a>
+        <form class="form-inline">
+            {% if handler.name %}
+            <a href="/profile/" class="btn btn-success my-2 my-sm-0">账号</a>&nbsp;
+            <a href="/logout/" class="btn btn-danger my-2 my-sm-0">退出</a>
+            {% else %}
+            <a href="/login/" class="btn btn-success my-2 my-sm-0">登录</a>&nbsp;
+            <a href="/regist/" class="btn btn-danger my-2 my-sm-0">注册</a>
+            {% end %}
+            &nbsp;<a href="/gbook/" class="btn btn-info my-2 my-sm-0">留言</a>
+            &nbsp;<a href="/manage/" class="btn btn-warning my-2 my-sm-0">管理</a>
+            &nbsp;<input class="form-control mr-sm-2 search-box" type="text" placeholder="请输搜索入关键字"
+                         aria-label="Search">
+            <button class="btn btn-outline-light my-2 my-sm-0" id="btn-search" type="submit">搜索</button>
+        </form>
+    </header>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/vclass/?t=dy">电影</a></li>
+            <li class="breadcrumb-item"><a href="/vclass/?t=dsj">电视剧</a></li>
+            <li class="breadcrumb-item"><a href="/vclass/?t=dm">动漫</a></li>
+        </ol>
+    </nav>
+    <div class="top-content">{% block content %}{% end %}</div>
+    <footer class="jumbotron foot-section">
+        <div class="container">
+            <ul class="list-inline text-center">
+                <li class="info-text">
+                    本网站提供的视频均系收集于各大视频网站，本网站只提供web页面服务，并不提供影片资源存储，也不参与录制、上传
+                </li>
+                <li class="info-text">
+                    若本站收录的节目无意侵犯了贵司版权，请给网页底部邮箱地址来信，我们会及时处理和回复，谢谢
+                </li>
+                <li class="info-text">
+                    Email address:xxx#qq.com,請将#换成@ |
+                    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+                    document.write(unescape("%3Cspan id='cnzz_stat_icon_1277950156'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s9.cnzz.com/z_stat.php%3Fid%3D1277950156%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+                </li>
+            </ul>
+        </div>
+    </footer>
+</div>
+<script src="https://cdn.bootcss.com/lazysizes/4.0.2/lazysizes.min.js"></script>
+<script src="https://cdn.bootcss.com/holder/2.9.4/holder.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+{% block foot %}{% end %}
+<script>
+    $(document).ready(function () {
+        $("#btn-search").click(function () {
+            var query = $(".search-box").val();
+            window.open("/search/?q=" + query);
+        });
+    });
+</script>
+</body>
+</html>
